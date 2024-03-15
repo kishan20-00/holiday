@@ -16,14 +16,14 @@ jobs:
       - name: Install all dependencies
         run: npm install
 
-      - name: build
-        run: npm run build # The build command of your project
+      - name: Build
+        run: npm run build # Assuming this generates a 'dist' directory
 
-      - name: Push
+      - name: Push to build branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
           BRANCH: build # The branch name where you want to push the assets
-          FOLDER: build # The directory where your assets are generated
+          FOLDER: dist # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
